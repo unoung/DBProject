@@ -1,0 +1,41 @@
+create or replace NONEDITIONABLE PACKAGE PKG_RESERVATION AS 
+ 
+  -- 예약 입력
+  -- 고객, 예약 관리 가져오고 예약아이디 할당, 예약관리 데이터 수정
+  PROCEDURE PROC_INS_RESERVATION(
+		 IN_R_ID		IN		VARCHAR2		-- 자바에서 생성 후 DB로 전달
+		,IN_CUST_ID		IN		VARCHAR2		-- 회원 아이디
+		,IN_CUST_NAME	IN		VARCHAR2		-- 회원이름X, 예약자이름
+		,IN_PERSON		IN		VARCHAR2		-- 예약 인원
+		
+		,O_ERRCODE		OUT		VARCHAR2
+		,O_ERRMSG		OUT		VARCHAR2
+  );
+
+
+  -- 예약건 조회
+  PROCEDURE PROC_SEL_RESERVATION(
+	 IN_R_ID		IN		VARCHAR2
+	,IN_CUST_ID		IN		VARCHAR2
+	,IN_R_DATE		IN		VARCHAR2
+	
+	,O_CUR			OUT		SYS_REFCURSOR
+  );
+
+  -- 예약 수정
+  PROCEDURE PROC_UP_RESERVATION(
+	 IN_R_ID		IN		VARCHAR2			-- 예약아이디
+	,IN_PERSON		IN		VARCHAR2			-- 예약 인원 수정
+	,O_ERRCODE		OUT		VARCHAR2
+	,O_ERRMSG		OUT		VARCHAR2
+  );
+  
+  -- 예약건 삭제 
+  PROCEDURE PROC_DEL_RESERVATION(
+	IN_R_ID			IN		VARCHAR2
+	,O_ERRCODE		OUT		VARCHAR2
+	,O_ERRMSG		OUT		VARCHAR2
+  );
+  
+  
+END PKG_RESERVATION;

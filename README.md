@@ -1,2 +1,2 @@
 # DBProject
-Oracle 을 이용한  프로젝트
+숙박 공유 플랫폼 서비스 DBProject

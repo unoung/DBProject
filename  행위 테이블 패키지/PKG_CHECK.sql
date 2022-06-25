@@ -1,0 +1,46 @@
+create or replace NONEDITIONABLE PACKAGE PKG_CHECK AS 
+
+--추가
+  PROCEDURE PROC_INS_CHECK
+(
+    --IN_CHK_ID       IN     VARCHAR2
+     IN_R_ID        IN     VARCHAR2
+    --,IN_CHECK_TIME    IN  VARCHAR2
+    ,IN_CHECK_GUBUN  IN   VARCHAR2
+    ,O_ERRCODE      OUT VARCHAR
+    ,O_ERRMSG       OUT VARCHAR
+)  ;
+
+--조회
+  PROCEDURE PROC_SEL_CHECK
+(
+    IN_CHK_ID        IN     VARCHAR2
+    ,IN_R_ID         IN     VARCHAR2
+    ,IN_CHECK_GUBUN  IN     VARCHAR2
+    ,O_CURSOR        OUT    SYS_REFCURSOR
+) ;
+
+--수정
+  PROCEDURE PROC_UP_CHECK
+(
+    IN_CHK_ID       IN     VARCHAR2
+    ,IN_R_ID        IN     VARCHAR2
+    --,IN_CHECK_TIME    IN   VARCHAR2
+    ,IN_CHECK_GUBUN  IN   VARCHAR2
+    ,O_ERRCODE      OUT VARCHAR
+    ,O_ERRMSG       OUT VARCHAR
+);
+
+
+--삭제
+  PROCEDURE PROC_DEL_CHECK
+(
+    IN_CHK_ID       IN     VARCHAR2
+    --,IN_R_ID        IN     VARCHAR2
+    --,IN_CHECK_TIME    IN       VARCHAR2
+    --,IN_CHECK_GUBUN  IN   VARCHAR2
+    ,O_ERRCODE      OUT VARCHAR
+    ,O_ERRMSG       OUT VARCHAR
+);
+
+END PKG_CHECK;
