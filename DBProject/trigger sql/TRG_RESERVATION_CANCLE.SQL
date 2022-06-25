@@ -1,0 +1,23 @@
+create or replace NONEDITIONABLE TRIGGER TRG_RESERVATION_CANCLE 
+AFTER INSERT ON CANCLE_RESERVATION_TBL 
+REFERENCING OLD AS O NEW AS N
+FOR EACH ROW
+DECLARE
+BEGIN
+     -- 구분값이 C이면 RESERVATION_MANAGE_TBL구분값  O로 변경 
+
+    IF :N.GUBUN = 'C' THEN
+
+      MERGE INTO RESERVATION_MANAGE_TBL A
+         USING
+            (
+                SELECT T2.RM_ID FROM RESERVATION_TBL T1, RESERVATION_DETAIL_TBL T2
+                WHERE T1.R_ID = T2.R_ID
+                AND T1.R_ID = :N.R_ID
+             )B
+            ON ( A.RM_ID = B.RM_ID)
+         WHEN MATCHED THEN
+            UPDATE SET RM_GUBUN = 'O'
+            ;
+    END IF;
+END;
